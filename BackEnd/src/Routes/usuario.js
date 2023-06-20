@@ -1,26 +1,17 @@
 const { Router } = require("express");
-const {createUserHandler, getUsersHandler }= require("../Handlers/usuario");
+const {createUserHandler, getUsersHandler, getUserHandler }= require("../Handlers/usuario");
 const userRouter = Router();
 
 // CREA UN USUARIO
 userRouter.post("/", createUserHandler);
 
-// TRAE LISTA DE USUARIOS
+// TRAE LISTA DE USUARIOS SI NO SE MANDA NADA POR QUERY
+// PERO SI SE MANDA UN NOMBRE TE LO TRAE
 userRouter.get("/", getUsersHandler);
 
+// TRAE UN USUARIO POR ID O NOMBRE PASADO POR PARAMS
+userRouter.get("/:data", getUserHandler);
 
-
-
-
-
-
-
-
-
-// TRAE UN USUARIO POR ID O POR NOMBRE
-userRouter.get("/", (request, response) => {
-  console.log("buscando usuario por ID");
-});
 
 
 

@@ -1,4 +1,8 @@
-const { crearUsuario } = require("../Controllers/usuarioControllers");
+const {
+  crearUsuario,
+  buscarUsuario,
+  mostrarAllUsers,
+} = require("../Controllers/usuarioControllers");
 const SUCCESS = 400,
   ERROR = 200;
 
@@ -13,6 +17,7 @@ const createUserHandler = async (request, response) => {
   }
 };
 
+// BUSCA UN USUARIO POR QUERY
 const getUsersHandler = async (request, response) => {
   const { nombre } = request.query;
   try {
@@ -25,12 +30,16 @@ const getUsersHandler = async (request, response) => {
   }
 };
 
-const { Usuario, Posteo } = require("../DataBase/dataBase");
-
-const buscarUsuario = () => {
-  return "usuario";
+// MOSTRAT USUARIO POR ID O NOMBRE PASADO POR PARAMS
+const getUserHandler = (request, response) => {
+  const { data } = request.params;
+  try {
+    console.log("buscando usuario por ID " + data);
+  } catch (error) {
+    response.status(ERROR).json({ error: error.message });
+  }
 };
 
-const mostrarAllUsers = async () => await Usuario.findAll();
+const { Usuario, Posteo } = require("../DataBase/dataBase");
 
-module.exports = { createUserHandler, getUsersHandler };
+module.exports = { createUserHandler, getUsersHandler, getUserHandler };
