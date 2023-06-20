@@ -1,0 +1,30 @@
+.contenedor-testimonio {
+  display: flex;
+  border: 2px solid #fff;
+  border-radius: 8px;
+  height: 300px;
+  margin: 30px 200px;
+}
+
+.imagen-testimonio{
+  border-radius: 6px;
+}
+
+.contenedor-info {
+  padding: 20px;
+  line-height: 30px;
+}
+
+p {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 18px;
+}
+
+.nombre-testimonio, .cargo-testimonio{
+  text-align: center;
+  font-size: 22px;
+}
+
+.texto-testimonio {
+  text-align: justify;
+}
