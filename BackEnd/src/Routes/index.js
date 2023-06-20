@@ -1,12 +1,9 @@
 const { Router } = require("express");
 const mainRouter = Router();
+const userRouter = require("../Routes/usuario");
+const posteoRouter = require("../Routes/posteo");
 
-mainRouter.use("/usuario", (request, response)=>{
-  console.log("estamos en usuario");
-});
-
-mainRouter.use("/posteo", (request, response)=>{
-  console.log("estamos en posteo");
-});
+mainRouter.use("/usuario", userRouter);
+mainRouter.use("/posteo", posteoRouter);
 
 module.exports = mainRouter;
