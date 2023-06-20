@@ -1,20 +1,29 @@
 const { Router } = require("express");
+const {createUserHandler, getUsersHandler }= require("../Handlers/usuario");
 const userRouter = Router();
 
 // CREA UN USUARIO
-userRouter.post("/", (request, response) => {
-  console.log("crea un usuario");
-});
+userRouter.post("/", createUserHandler);
 
 // TRAE LISTA DE USUARIOS
-userRouter.get("/", (request, response) => {
-  console.log("Lista de usuarios....");
-});
+userRouter.get("/", getUsersHandler);
 
-// TRAE UN USUARIO POR ID
+
+
+
+
+
+
+
+
+
+// TRAE UN USUARIO POR ID O POR NOMBRE
 userRouter.get("/", (request, response) => {
   console.log("buscando usuario por ID");
 });
+
+
+
 
 // ELIMINAR UN USUARIO POR NOMBRE
 userRouter.delete("/", (request, response) => {
