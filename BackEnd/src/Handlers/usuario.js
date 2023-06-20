@@ -31,15 +31,22 @@ const getUsersHandler = async (request, response) => {
 };
 
 // MOSTRAT USUARIO POR ID O NOMBRE PASADO POR PARAMS
-const getUserHandler = (request, response) => {
+const getUserHandler = async (request, response) => {
   const { data } = request.params;
+  const typeData = isNaN(data) ? "nombre" : "id";
   try {
-    console.log("buscando usuario por ID " + data);
+    const user = await getUserData(typeData);
+    response.status(SUCCESS).json(user);
   } catch (error) {
     response.status(ERROR).json({ error: error.message });
   }
 };
 
 const { Usuario, Posteo } = require("../DataBase/dataBase");
+const getUserData = (data) => {
+  return data;
+}
+
+
 
 module.exports = { createUserHandler, getUsersHandler, getUserHandler };
