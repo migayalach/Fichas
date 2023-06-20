@@ -1,5 +1,11 @@
 const { Router } = require("express");
-const {createUserHandler, getUsersHandler, getUserHandler }= require("../Handlers/usuario");
+const {
+  createUserHandler,
+  getUsersHandler,
+  getUserHandler,
+  updateUserHandler,
+  deleteUserHandler,
+} = require("../Handlers/usuario");
 const userRouter = Router();
 
 // CREA UN USUARIO
@@ -12,18 +18,10 @@ userRouter.get("/", getUsersHandler);
 // TRAE UN USUARIO POR ID O NOMBRE PASADO POR PARAMS
 userRouter.get("/:data", getUserHandler);
 
+// EDITA UN USARIO POR CARNET
+userRouter.put("/", updateUserHandler);
 
-
-
-
-// ELIMINAR UN USUARIO POR NOMBRE
-userRouter.delete("/", (request, response) => {
-  console.log("elimina usuario por nombre");
-});
-
-// EDITA UN USARIO POR NOMBRE
-userRouter.put("/", (request, response) => {
-  console.log("editando....");
-});
+// ELIMINAR UN USUARIO POR CARNET
+userRouter.delete("/:carnet", deleteUserHandler);
 
 module.exports = userRouter;

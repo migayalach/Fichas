@@ -14,6 +14,11 @@ module.exports = (sequelize) => {
         allowNull: false,
         unique: true,
       },
+      carnet: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        unique: true,
+      },
       pais: {
         type: DataTypes.STRING,
         allowNull: false,
