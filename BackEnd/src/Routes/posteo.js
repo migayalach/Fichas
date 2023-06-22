@@ -1,14 +1,20 @@
 const { Router } = require("express");
+// MIDDLEWARE'S
+const {
+  validarPosteo,
+  validarTitulo,
+} = require("../Middlewares/posteoMiddleware");
+
 const {
   createPostHandler,
   getPostHandler,
   updatePosteoHandler,
-  eliminarPosteoHandler
+  eliminarPosteoHandler,
 } = require("../Handlers/posteo");
 const posteoRouter = Router();
 
 // CREA UN POSTEO
-posteoRouter.post("/", createPostHandler);
+posteoRouter.post("/", validarPosteo, createPostHandler);
 
 // TRAE LISTA DE POSTEO POR QUERY SI Y NO
 posteoRouter.get("/", getPostHandler);
@@ -19,7 +25,7 @@ posteoRouter.get("/", getPostHandler);
 // });
 
 // EDITA UN POSTEO POR NOMBRE
-posteoRouter.put("/", updatePosteoHandler);
+posteoRouter.put("/", validarTitulo, updatePosteoHandler);
 
 // ELIMINAR UN POSTEO POR NOMBRE
 posteoRouter.delete("/:titulo", eliminarPosteoHandler);

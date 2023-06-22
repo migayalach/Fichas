@@ -1,4 +1,9 @@
 const { Router } = require("express");
+// MIDDLEWARE'S
+const {
+  validarUsuario,
+  validarCarnet,
+} = require("../Middlewares/usuarioMiddleware");
 const {
   createUserHandler,
   getUsersHandler,
@@ -9,7 +14,7 @@ const {
 const userRouter = Router();
 
 // CREA UN USUARIO
-userRouter.post("/", createUserHandler);
+userRouter.post("/", validarUsuario, createUserHandler);
 
 // TRAE LISTA DE USUARIOS SI NO SE MANDA NADA POR QUERY
 // PERO SI SE MANDA UN NOMBRE TE LO TRAE
@@ -19,7 +24,7 @@ userRouter.get("/", getUsersHandler);
 userRouter.get("/:data", getUserHandler);
 
 // EDITA UN USARIO POR CARNET
-userRouter.put("/", updateUserHandler);
+userRouter.put("/", validarCarnet, updateUserHandler);
 
 // ELIMINAR UN USUARIO POR CARNET
 userRouter.delete("/:carnet", deleteUserHandler);
