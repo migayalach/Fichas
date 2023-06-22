@@ -4,6 +4,7 @@ const {
   mostrarAllUsers,
   getUserData,
   updateUserInfo,
+  deleteUserInfo,
 } = require("../Controllers/usuarioControllers");
 const SUCCESS = 400,
   ERROR = 200;
@@ -79,20 +80,6 @@ const deleteUserHandler = async (request, response) => {
   }
 };
 
-const { Usuario, Posteo } = require("../DataBase/dataBase");
-
-const deleteUserInfo = async (carnet) => {
-  const eliminado = await Usuario.destroy({
-    where: {
-      carnet,
-    },
-  });
-  if (eliminado === 1)
-    return `Usuario con carnet: ${carnet} fue eliminado con exito`;
-  throw Error(
-    `No se pudo eliminar el usuario con carnet: ${carnet} porque no existe`
-  );
-};
 module.exports = {
   createUserHandler,
   getUsersHandler,

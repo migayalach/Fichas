@@ -22,4 +22,33 @@ const buscarPosteo = async (titulo) => {
 
 const mostrarPosteos = async () => await Posteo.findAll();
 
-module.exports = { createPosteo, buscarPosteo, mostrarPosteos };
+const updatePosteoBd = async (titulo, testimonio) => {
+  const updatePosteo = await Posteo.update(
+    { titulo, testimonio },
+    { where: { titulo } }
+  );
+  if (updatePosteo === 0)
+    throw Error(`No se pudo actualizar el posteo con titulo: ${titulo}`);
+  return { success: `Posteo actualizado` };
+};
+
+const deletePosteoBd = async (titulo) => {
+  const eliminarPosteo = await Posteo.destroy({
+    where: {
+      titulo,
+    },
+  });
+  if (eliminarPosteo === 1)
+    return `Posrteo con titulo: ${titulo} fue eliminado con exito`;
+  throw Error(
+    `No se pudo eliminar el Posteo con titulo: ${titulo} porque no existe`
+  );
+};
+
+module.exports = {
+  createPosteo,
+  buscarPosteo,
+  mostrarPosteos,
+  updatePosteoBd,
+  deletePosteoBd,
+};

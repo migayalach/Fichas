@@ -5,6 +5,8 @@ const {
   createPosteo,
   buscarPosteo,
   mostrarPosteos,
+  updatePosteoBd,
+  deletePosteoBd,
 } = require("../Controllers/posteoControllers");
 
 const createPostHandler = async (request, response) => {
@@ -19,7 +21,7 @@ const createPostHandler = async (request, response) => {
 
 const getPostHandler = async (request, response) => {
   let { titulo } = request.query;
-  titulo = titulo.trim();
+  // titulo = titulo.trim();
   try {
     const resultado = titulo
       ? await buscarPosteo(titulo)
@@ -30,6 +32,29 @@ const getPostHandler = async (request, response) => {
   }
 };
 
-const { Usuario, Posteo } = require("../DataBase/dataBase");
+const updatePosteoHandler = async (request, response) => {
+  const { titulo, testimonio } = request.body;
+  try {
+    const updatePost = await updatePosteoBd(titulo, testimonio);
+    response.status(SUCCESS).json(updatePost);
+  } catch (error) {
+    response.status(ERROR).json({ error: error.message });
+  }
+};
 
-module.exports = { createPostHandler, getPostHandler };
+const eliminarPosteoHandler = async (request, response) => {
+  const { titulo } = request.params;
+  try {
+    const deletePost = await deletePosteoBd(titulo);
+    response.status(SUCCESS).json(deletePost);
+  } catch (error) {
+    response.status(ERROR).json({ error: error.message });
+  }
+};
+
+module.exports = {
+  createPostHandler,
+  getPostHandler,
+  updatePosteoHandler,
+  eliminarPosteoHandler,
+};

@@ -38,7 +38,6 @@ const getUserData = async (typeData, data) => {
 };
 
 const updateUserInfo = async (nombre, carnet, pais, cargo, empresa, imagen) => {
-  console.log(nombre, carnet, pais, cargo, empresa, imagen);
   const updateUser = await Usuario.update(
     { nombre, pais, cargo, empresa, imagen },
     { where: { carnet } }
@@ -47,10 +46,24 @@ const updateUserInfo = async (nombre, carnet, pais, cargo, empresa, imagen) => {
   return { success: `Usuario con carnet ${carnet} modificado con exito` };
 };
 
+const deleteUserInfo = async (carnet) => {
+  const eliminado = await Usuario.destroy({
+    where: {
+      carnet,
+    },
+  });
+  if (eliminado === 1)
+    return `Usuario con carnet: ${carnet} fue eliminado con exito`;
+  throw Error(
+    `No se pudo eliminar el usuario con carnet: ${carnet} porque no existe`
+  );
+};
+
 module.exports = {
   crearUsuario,
   buscarUsuario,
   mostrarAllUsers,
   getUserData,
   updateUserInfo,
+  deleteUserInfo,
 };

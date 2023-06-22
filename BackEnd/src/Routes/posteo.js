@@ -1,5 +1,10 @@
 const { Router } = require("express");
-const { createPostHandler, getPostHandler } = require("../Handlers/posteo");
+const {
+  createPostHandler,
+  getPostHandler,
+  updatePosteoHandler,
+  eliminarPosteoHandler
+} = require("../Handlers/posteo");
 const posteoRouter = Router();
 
 // CREA UN POSTEO
@@ -14,13 +19,9 @@ posteoRouter.get("/", getPostHandler);
 // });
 
 // EDITA UN POSTEO POR NOMBRE
-posteoRouter.put("/", (request, response) => {
-  console.log("editando....");
-});
+posteoRouter.put("/", updatePosteoHandler);
 
-// // ELIMINAR UN POSTEO POR NOMBRE
-// posteoRouter.delete("/", (request, response) => {
-//   console.log("elimina posteo por titulo");
-// });
+// ELIMINAR UN POSTEO POR NOMBRE
+posteoRouter.delete("/:titulo", eliminarPosteoHandler);
 
 module.exports = posteoRouter;
