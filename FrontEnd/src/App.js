@@ -1,4 +1,8 @@
 import "./HojasDeEstilo/App.css";
+import { Detail, Form, Home, Landing } from "./Views";
+import { Route, useLocation } from "react-router-dom";
+import NavBar from "./Componentes/NavBar";
+
 import Testimonio from "./Componentes/Testimonio";
 import { v4 as uuidv4 } from "uuid";
 import emma from "./Imagenes/testimonio-emma.png";
@@ -39,22 +43,35 @@ const datos = [
 ];
 
 function App() {
+  const location = useLocation();
   return (
     <div className="App">
-        <h1>Here is what our alumni say about freeCodeCamp:</h1>
-        {datos.map(({ id, nombre, pais, cargo, empresa, testimonio, foto }) => (
-          <Testimonio
-            key={id}
-            nombre={nombre}
-            pais={pais}
-            cargo={cargo}
-            empresa={empresa}
-            testimonio={testimonio}
-            foto={foto}
-          />
-        ))}
+      {location.pathname !== "/" && <NavBar/>}
+      <Route exact path="/" component={Landing} />
+      <Route exact path="/detail" component={Detail} />
+      <Route exact path="/create" component={Form} />
+      <Route exact path="/home" render={() => <Home />} />
     </div>
   );
 }
 
 export default App;
+
+// function App() {
+//   return (
+//     <div className="App">
+//       <h1>Here is what our alumni say about freeCodeCamp:</h1>
+//       {datos.map(({ id, nombre, pais, cargo, empresa, testimonio, foto }) => (
+//         <Testimonio
+//           key={id}
+//           nombre={nombre}
+//           pais={pais}
+//           cargo={cargo}
+//           empresa={empresa}
+//           testimonio={testimonio}
+//           foto={foto}
+//         />
+//       ))}
+//     </div>
+//   );
+// }
