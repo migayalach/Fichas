@@ -1,4 +1,4 @@
-import "./App.css";
+import "./HojasDeEstilo/App.css";
 import Testimonio from "./Componentes/Testimonio";
 import { v4 as uuidv4 } from "uuid";
 import emma from "./Imagenes/testimonio-emma.png";
