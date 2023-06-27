@@ -6,8 +6,8 @@ const {
   updateUserInfo,
   deleteUserInfo,
 } = require("../Controllers/usuarioControllers");
-const SUCCESS = 400,
-  ERROR = 200;
+const SUCCESS = 200,
+  ERROR = 400;
 
 // CREA UN USUARIO
 const createUserHandler = async (request, response) => {
