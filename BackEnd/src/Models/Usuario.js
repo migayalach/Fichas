@@ -32,7 +32,7 @@ module.exports = (sequelize) => {
         allowNull: false,
       },
       imagen: {
-        type: DataTypes.BLOB,
+        type: DataTypes.TEXT,
         allowNull: true,
       },
       creado: {

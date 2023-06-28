@@ -1,5 +1,6 @@
 import React from "react";
 import "../HojasDeEstilo/Testimonio.css";
+
 const Testimonio = ({ foto, nombre, pais, cargo, empresa, testimonio }) => {
   return (
     <div className="contenedor-testimonio">
