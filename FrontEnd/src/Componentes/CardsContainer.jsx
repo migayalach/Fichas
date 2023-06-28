@@ -40,17 +40,19 @@ const CardsContainer = () => {
   const datos = useSelector((state)=> state.users)
   return (
     <div>
-      {datos.map(({ id, nombre, pais, cargo, empresa, testimonio, foto }) => (
+      {datos.map(({ id, nombre, pais, cargo, empresa, testimonio, foto, Posteos }) => (
         <Testimonio
           key={id}
           nombre={nombre}
           pais={pais}
           cargo={cargo}
           empresa={empresa}
-          testimonio={testimonio}
+          // testimonio={testimonio}
           foto={foto}
+          testimonio={Posteos}
         />
       ))}
+      
     </div>
   );
 };

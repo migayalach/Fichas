@@ -14,7 +14,13 @@ const buscarUsuario = async (nombre) => {
   return dataBaseUser;
 };
 
-const mostrarAllUsers = async () => await Usuario.findAll();
+// const mostrarAllUsers = async () => await Usuario.findAll();
+const mostrarAllUsers = async () => {
+  const data = await Usuario.findAll({
+    include: [{ model: Posteo }],
+  });
+  return data;
+};
 
 const getUserData = async (typeData, data) => {
   const response =

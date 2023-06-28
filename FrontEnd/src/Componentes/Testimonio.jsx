@@ -15,7 +15,11 @@ const Testimonio = ({ foto, nombre, pais, cargo, empresa, testimonio }) => {
         <p className="cargo-testimonio">
           <strong>{cargo}</strong> at <strong>{empresa}</strong>
         </p>
-        <p className="texto-testimonio">"{testimonio}"</p>
+        {testimonio.map(({ id, testimonio }) => (
+          <p className="texto-testimonio" key={id}>
+            "{testimonio}"
+          </p>
+        ))}
       </div>
     </div>
   );
